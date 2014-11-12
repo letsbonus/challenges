@@ -12,7 +12,7 @@ Feel free to email the appropriate address above if you have any questions.
 
 ## Submission Instructions
 1. First, fork this project on github. You will need to create an account if you don't already have one.
-1. Next, complete the project as described below within your fork.
+1. Next, complete the project as described below within your fork using a branch strategy.
 1. Finally, push all of your changes to your fork on github and submit a pull request. You should also email to the address listed in the first section and your recruiter to let them know you have submitted a solution. Make sure to include your github username in your email (so we can match people with pull requests).
 
 ## Alternate Submission Instructions (if you don't want to publicize completing the challenge)
