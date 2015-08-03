@@ -4,7 +4,7 @@ This is the Jesus Hernando's project for Let's Bonus Challenge Test
 
 ## Configuration
 
-1. Clone the repository
+1. Clone the repository ($ git clone https://github.com/jesushs/challenges.git)
 1. Create the database
 1. Modify the config file (app/config/parameters.yml) with your database parameters
 1. Run the migrations from the symfony console (  
