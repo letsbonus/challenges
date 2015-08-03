@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Totales{% endblock %}
+
+{% block body %}
+    <h1>Totales por mes y por comerciante</h1>
+    <table class="table table-striped">
+        <thead>
+            <th>Comerciante</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            {% for data in totalPerMerchantName %}
+            <tr>
+                <td>{{ data['merchant_name'] }}</td>
+                <td>{{ data['total'] }}</td>
+            </tr>    
+            {% endfor %}  
+        </tbody>            
+    </table>
+{% endblock %}

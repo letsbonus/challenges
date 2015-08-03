@@ -8,7 +8,8 @@
         <p>Prueba realizada por Jesús Hernando Sancha.</p>
     </div>
     <p class="text-muted">Selecciona el fichero que quieres importar</p>
-    <form id="importFileForm">
+    <form id="importFileForm" action="{{ path('import') }}" method="post" enctype="multipart/form-data">
         <input type="file" name="importFile" />
+        <input type="submit" name="submit" class="btn btn-primary top15" value="Enviar" />
     </form>
 {% endblock %}

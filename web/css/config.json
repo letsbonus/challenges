@@ -383,6 +383,7 @@
   "css": [
     "type.less",
     "grid.less",
+    "tables.less",
     "forms.less",
     "buttons.less",
     "responsive-utilities.less",
@@ -391,5 +392,5 @@
     "responsive-embed.less"
   ],
   "js": [],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=18124e5f4dd009a872a2"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=b861141d54aed099aa71"
 }

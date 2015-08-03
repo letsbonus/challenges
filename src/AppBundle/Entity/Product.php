@@ -45,14 +45,14 @@ class Product
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="init_date", type="date")
+     * @ORM\Column(name="init_date", type="datetime")
      */
     private $initDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expiry_date", type="date")
+     * @ORM\Column(name="expiry_date", type="datetime")
      */
     private $expiryDate;
 
@@ -63,20 +63,19 @@ class Product
      */
     private $status;
 
-    /**
-     * @var integer
+   /**
+     * @var string
      *
-     * @ORM\Column(name="stock", type="integer")
+     * @ORM\Column(name="merchant_address", type="string", length=255)
      */
-    private $stock;
-
+    private $merchantAddress;
+    
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="discount", type="integer")
+     * @ORM\Column(name="merchant_name", type="string", length=255)
      */
-    private $discount;
-
+    private $merchantName;
 
     /**
      * Get id
@@ -227,48 +226,48 @@ class Product
     }
 
     /**
-     * Set stock
+     * Set merchant address
      *
-     * @param integer $stock
+     * @param string $merchantAddress
      * @return Product
      */
-    public function setStock($stock)
+    public function setMerchantAddress($merchantAddress)
     {
-        $this->stock = $stock;
+        $this->merchantAddress = $merchantAddress;
 
         return $this;
     }
 
     /**
-     * Get stock
+     * Get merchant address
      *
-     * @return integer 
+     * @return string 
      */
-    public function getStock()
+    public function getMerchantAddress()
     {
-        return $this->stock;
+        return $this->merchantAddress;
     }
-
+    
     /**
-     * Set discount
+     * Set merchant name
      *
-     * @param integer $discount
+     * @param string $merchantName
      * @return Product
      */
-    public function setDiscount($discount)
+    public function setMerchantName($merchantName)
     {
-        $this->discount = $discount;
+        $this->merchantName = $merchantName;
 
         return $this;
     }
 
     /**
-     * Get discount
+     * Get merchant name
      *
-     * @return integer 
+     * @return string 
      */
-    public function getDiscount()
+    public function getMerchantName()
     {
-        return $this->discount;
+        return $this->merchantName;
     }
 }
