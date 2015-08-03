@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Importar el fichero{% endblock %}
+
+{% block body %}
+    <div class="jumbotron top30">
+        <h1>Let's Bonus Challenges</h1>
+        <p>Prueba realizada por Jesús Hernando Sancha.</p>
+    </div>
+    <p class="text-muted">Selecciona el fichero que quieres importar</p>
+    <form id="importFileForm" action="{{ path('import') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="importFile" />
+        <input type="submit" name="submit" class="btn btn-primary top15" value="Enviar" />
+    </form>
+{% endblock %}
