@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Let's Bonus Challenges{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+                'css/bootstrap.min.css'
+                'css/bootstrap-theme.min.css'
+                'css/layout.css'
+                filter='cssrewrite' output='css/compiled/letsbonuschallenges.css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        
+        {# CONTENT #}
+        <div id="content" class="container-fluid">
         {% block body %}{% endblock %}
+        </div>
+        {# END:     CONTENT #}
+        
         {% block javascripts %}{% endblock %}
     </body>
 </html>
