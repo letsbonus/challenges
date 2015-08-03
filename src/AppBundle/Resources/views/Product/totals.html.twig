@@ -18,4 +18,18 @@
             {% endfor %}  
         </tbody>            
     </table>
+    <table class="table table-striped">
+        <thead>
+            <th>Mes</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            {% for data in totalPerMonth %}
+            <tr>
+                <td>{{ data['year'] ~ '-' ~ data['month'] }}</td>
+                <td>{{ data['total'] }}</td>
+            </tr>    
+            {% endfor %}  
+        </tbody>            
+    </table>
 {% endblock %}

@@ -49,9 +49,11 @@ class ProductController extends Controller
         }
         
         /* Get totals */
+        $totalPerMonth = $em->getRepository('AppBundle:Product')->getTotalPerMonth();
         $totalPerMerchantName = $em->getRepository('AppBundle:Product')->getTotalPerMerchantName();
         
         return $this->render('AppBundle:Product:totals.html.twig', array(
+            'totalPerMonth' => $totalPerMonth,
             'totalPerMerchantName' => $totalPerMerchantName,
         ));
     }

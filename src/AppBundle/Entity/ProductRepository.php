@@ -12,6 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    
+     /**
+     * Get the number of products per month
+     * 
+     * @return array
+     */
+    public function getTotalPerMonth(){
+        $em = $this->getEntityManager();
+        
+        $query = $em->getConnection()
+                    ->prepare("SELECT COUNT(*) AS total, YEAR(init_date) as year, MONTH(init_date) AS month
+                                FROM `product`
+                                GROUP BY YEAR(init_date), MONTH(init_date)
+                                ORDER BY YEAR(init_date) DESC, MONTH(init_date) DESC"   
+        );
+        
+        $query->execute();
+        $result = $query->fetchAll();      
+        
+        return $result;
+    }
+    
+    
+     /**
+     * Get the number of products per mercant name
+     * 
+     * @return array
+     */
     public function getTotalPerMerchantName(){
         $em = $this->getEntityManager();
         
