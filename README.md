@@ -1,5 +1,7 @@
-download challenges
+#installation
+download code
 import /doc/database.sql on your mysql local machine
+change database credentials if neeeded in app/config/database.php (default)
 access to index.php with user/password (root/123456)
 
 # Challenge for Software Developer
