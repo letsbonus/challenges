@@ -1,3 +1,9 @@
+#installation
+download code
+import /doc/database.sql on your mysql local machine
+change database credentials if neeeded in app/config/database.php (default)
+access to index.php with user/password (root/123456)
+
 # Challenge for Software Developer
 To better assess a candidates development skills, we would like to provide the following challenge.  You have as much time as you'd like (though we ask that you not spend more than a few hours).
 
