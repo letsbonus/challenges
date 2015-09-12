@@ -1,0 +1,14 @@
+
+product per month
+<ul>
+{% for item in perMount %}
+    <li> {{item.total}}, {{item.year}} - {{item.month}} </li>
+{% endfor %}
+</ul>
+
+product per merchant
+<ul>
+{% for item in perCustomer %}
+     <li> {{item.total}}, {{item.name}} </li>
+{% endfor %}
+</ul>

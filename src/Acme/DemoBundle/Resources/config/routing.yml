@@ -1,6 +1,6 @@
 _welcome:
     path:     /
-    defaults: { _controller: AcmeDemoBundle:Welcome:index }
+    defaults: { _controller: AcmeDemoBundle:Parser:index }
 
 _demo_secured:
     resource: "@AcmeDemoBundle/Controller/SecuredController.php"
@@ -10,3 +10,7 @@ _demo:
     resource: "@AcmeDemoBundle/Controller/DemoController.php"
     type:     annotation
     prefix:   /demo
+
+_demo_parser:
+    resource: "@AcmeDemoBundle/Controller/ParserController.php"
+    type:     annotation
