@@ -8,9 +8,9 @@ The majority of the code is in src/AppBundle/DefaultController.php slightly comm
 
 The templates (views) are in app/Resources/views/default
 
-To import the tab file you can do it from path http://localhost.com/app_dev.php (or whatever domain, so you don't run into cache issues)
+To import the tab file you can do it from path http://localhost/app_dev.php (or whatever domain, so you don't run into cache issues)
 
-To add a single product you can use the crud at the same http://localhost.com/app_dev.php, just make sure status is 1 and the dates are correct
+To add a single product you can use the crud at the same http://localhost/app_dev.php, just make sure status is 1 and the dates are correct
 
 ## Database
 
