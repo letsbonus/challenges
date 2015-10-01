@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        Mass Import:
+        {{ form(massiveForm) }}
+    </div>
+
+    <div class="col-md-12">
+        Single Item:
+        {{ form(form) }}
+    </div>
+
+    <script>
+        CKEDITOR.replace( 'appbundle_product_description' );
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
