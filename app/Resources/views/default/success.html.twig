@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        <div class="alert alert-success">Thank you for adding a Product.</div>
+    </div>
+
+    <div>
+        <table class="table">
+            <th>Year</th>
+            <th>Month</th>
+            <th>Count</th>
+            {% for year,monthsInYear in months %}
+                {% for month,monthCount in monthsInYear %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ month }}</td>
+                        <td>{{ monthCount }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <table class="table">
+            <th>Merchant</th>
+            <th>Count</th>
+            {% for merchant in merchants %}
+                <tr>
+                    <td>{{ merchant.name }}</td>
+                    <td>{{ merchant.number }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
