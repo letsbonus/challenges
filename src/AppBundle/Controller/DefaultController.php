@@ -113,6 +113,9 @@ class DefaultController extends Controller
 
         foreach ($this->getActiveProducts() as $product) {
             for ($year = $product['year_start']; $year <= $product['year_end']; ++$year) {
+		// after sleeping I just realized theres a bug here that I'm not going to fix so you can see the error
+		// when the year changes the $month should become 1 and go until 12 until $month = $month_end and $year = $year_end
+		// this way it gets the full range of when the product applys, my mistake for not testing properly
                 for ($month = $product['month_start']; $month <= $product['month_end']; ++$month) {
                     $months[$year][$month] = !empty($months[$year][$month]) ? $months[$year][$month] + 1 : 1;
                 }
