@@ -4,7 +4,7 @@ For the database there is a tables.sql there really isn't much as I didn't separ
 One for facilitating a query (months_in_year) and the other which stores the information.
 
 ## Instructions
-The majority of the code is in src/AppBundle/DefaultController.php slightly commented.
+The majority of the code is in src/AppBundle/Controller/DefaultController.php slightly commented.
 
 The templates (views) are in app/Resources/views/default
 
