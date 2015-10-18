@@ -1,0 +1,66 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="product")
+ */
+class Product {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="title", type="string", length=100)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(name="price", type="decimal", scale=2)
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(name="init_date", type="datetime")
+     */
+    private $init_date;
+
+    /**
+     * @ORM\Column(name="expire_date", type="datetime")
+     */
+    private $expire_date;
+
+    /**
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
+    
+    /**
+     * @ORM\Column(name="merchant_address", type="boolean")
+     */
+    private $merchant_address;
+    
+    /**
+     * @ORM\Column(name="merchant_name", type="boolean")
+     */
+    private $merchant_name;
+    
+
+
+
+    
+
+}

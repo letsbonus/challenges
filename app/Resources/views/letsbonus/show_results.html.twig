@@ -1,0 +1,21 @@
+{% extends '::layout_letsbonus.html.twig' %}
+
+{% block content %}
+    <div id="wrapper">
+        <div id="container">
+                
+            Product for month:<br>
+            {% for product in products_by_month %}
+                El {{ product.date |date("m-d-Y") }} have {{ product.number }} products.<br>
+            {% endfor %}
+            
+            <hr>
+            
+            Product for merchant:<br>
+            {% for product in products_by_merchant %}
+                {{ product.merchant_name }} have {{ product.number }} products.<br>
+            {% endfor %}
+            
+        </div>
+    </div>
+{% endblock %}

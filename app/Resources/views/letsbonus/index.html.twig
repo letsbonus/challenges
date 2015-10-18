@@ -1,0 +1,12 @@
+{% extends '::layout_letsbonus.html.twig' %}
+
+{% block content %}
+    <div id="wrapper">
+        <div id="container">
+            <form method="POST" {{ form_enctype(form) }} enctype="multipart/form-data">
+                {{ form_widget(form) }}
+                <input type="submit" value="Upload" class="btn btn-default pull-right" />
+            </form>
+        </div>
+    </div>
+{% endblock %}
