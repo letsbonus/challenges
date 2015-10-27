@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Item
  *
  * @ORM\Table(name="item")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
+ * @ORM\Entity()
  */
 class Item
 {
@@ -30,6 +30,11 @@ class Item
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2, nullable=false)
+     */
+    protected $price;
 
     /**
      * @ORM\Column(type="datetime")
@@ -242,5 +247,29 @@ class Item
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return Item
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }
