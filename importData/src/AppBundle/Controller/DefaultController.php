@@ -58,18 +58,39 @@ class DefaultController extends Controller
                 $em->persist($item);
             }
 
-
-
-
             $em->flush();
+
+            return ResponseRedirect('resultados');
 
         }
 
-        $items = $em->getRepository('AppBundle:Item')->findAll();
+
 
         return $this->render('AppBundle::defaultView.html.twig', array(
-            'form' => $form->createView(),
-            'items' => $items
+            'form' => $form->createView()
         ));
+    }
+
+    /**
+     *
+     * Resultado de la importación de datos
+     *
+     * @param Request $request
+     * @return Response|\Symfony\Component\HttpFoundation\Response
+     * @Route("/resultados", name="resultados")
+     */
+    public function resultadosAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $itemsPerMonth = $em->getRepository('AppBundle:Item')->getProductPerMonth();
+        $itemsPerMerchant = $em->getRepository('AppBundle:Item')->getProductPerMerchant ();
+
+        return $this->render('AppBundle::resultView.html.twig', array(
+            'itemsPerMonth' => $itemsPerMonth,
+            'itemsPerMerchant' => $itemsPerMerchant
+        ));
+
     }
 }
