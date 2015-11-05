@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Import Product{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/united/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="panel panel-default">
+
+
+            <div class="panel-heading">
+                <h1 class="panel-title">Product Import</h1>
+            </div>
+
+            <div class="panel-body">
+                <div class="alert-container">
+                    {% if importStatus == true %}
+                        <div class="alert alert-success">Import ok</div>
+                    {% elseif importStatus != null %}
+                        <div class="alert alert-danger"> {{ importStatus }} </div>
+                    {% endif %}
+                </div>
+
+                <div class="resume">
+                    {% if resume %}
+                    <h3>Month report</h3>
+                    <ul class="list-group">
+                        {% for month in resume.monthCount  %}
+                            <li class="list-group-item">Month: {{ month.monthName }}<span class="badge">Products: {{ month.productCount }}</span> </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h3>Merchantreport</h3>
+                    <ul class="list-group">
+                        {% for merchant in resume.merchantCount  %}
+                            <li class="list-group-item">Merchant: {{ merchant.merchant_name }}<span class="badge">Products: {{ merchant.productCount }}</span> </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                {{ form(form) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
