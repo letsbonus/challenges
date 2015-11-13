@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LetsBonus Challenge, forked from https://github.com/letsbonus/challenges">
+    <meta name="author" content="Francec Rocher">
+    <link rel="icon" href="https://letsbonus.com/favicon.ico">
+
+    <title>File Importer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.fuelcdn.com/fuelux/3.12.0/css/fuelux.min.css">
+
+    <style type="text/css">
+      body { overflow-y: scroll }
+    </style>
+  </head>
+
+  <body class="fuelux">
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Product File Importer</h1>
+        <p class="lead text-left">This tool lets you import product
+          files in text format into database. <br> Follow instructions below
+          to complete the importing process.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>Process</h3>
+      <div class="wizard" id="wizard" data-initialize="wizard">
+        <div class="steps-container">
+	  <ul class="steps">
+	    <li data-step="1" data-name="campaign" class="active">
+	      <span class="badge">1</span>File
+	      <span class="chevron"></span>
+	    </li>
+	    <li data-step="2">
+	      <span class="badge">2</span>Check
+	      <span class="chevron"></span>
+	    </li>
+	    <li data-step="3" data-name="template">
+	      <span class="badge">3</span>Import
+	      <span class="chevron"></span>
+	    </li>
+	  </ul>
+        </div>
+        <div class="step-content">
+	  <div class="step-pane active sample-pane alert" data-step="1">
+	    <h4>Select File</h4>
+	    <p>Please select the file that contains the data to import.
+              <br>
+              <i>Don't import the same file twice: already existing
+                products aren't imported.</i>
+            </p>
+            <br>
+            <form id="file" name="file" method="POST">
+              <div class="form-group">
+                <input type="file" id="filename" name="filename">
+              </div>
+              <button id="file-submit" type="submit" class="btn btn-primary disabled">Submit</button>
+            </form>
+            <br>
+            <div id="file-error" class="alert alert-danger" role="alert" style="display:none">
+              <strong>Warning!</strong>&emsp;
+              <span id="file-error-message"></span>
+            </div>
+	  </div>
+	  <div class="step-pane sample-pane alert" data-step="2">
+	    <h4>Check Format</h4>
+	    <p>Review the data contained in the file. Next table shows
+	      how it will be imported into the DataBase (max. 10 rows shown)</p>
+            <br>
+            <p id="check-rows"></p>
+            <table class="table table-condensed table-bordered">
+              <thead>
+                <th>#</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Init date</th>
+                <th>Expiry Date</th>
+                <th>Merchant address</th>
+                <th>Merchant name</th>
+              </thead>
+              <tbody id="check-data">
+              </tbody>
+            </table>
+            <br>
+            <p class="lead">
+              Ready to import data?
+            </p>
+            <br>
+            <button id="check-cancel" class="btn btn-danger">Cancel</button>
+            &nbsp;
+            <button id="check-import" class="btn btn-success">Import Data</button>
+	  </div>
+	  <div class="step-pane sample-pane alert" data-step="3">
+	    <h4>Import Data to DB</h4>
+            <div class="alert alert-success" role="alert">
+              <strong>Success!</strong>&emsp;
+	      Data has been successfully imported into the DataBase.
+            </div>
+            <br>
+            <strong>Summary</strong>
+            <table class="table table-condensed table-bordered">
+              <theader>
+                <th>Month</th>
+                <th>Number of products</th>
+              </theader>
+              <tbody id="summary-month">
+              </tbody>
+              <theader>
+                <th>Merchant</th>
+                <th>Number of products</th>
+              </theader>
+              <tbody id="summary-merchant">
+              </tbody>
+            </table>
+            <blockquote>
+              <p>
+                Please review your database tables.
+                <br>
+                In <tt>producst</tt> table, set <code>status</code>
+                and <code>stock</code> column values according to your
+                needs.
+              </p>
+            </blockquote>
+            <button id="import-more" class="btn btn-primary">Import more files</button>
+	  </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <hr>
+        <p>&copy; Francesc Rocher 2015</p>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://www.fuelcdn.com/fuelux/3.12.0/js/fuelux.min.js"></script>
+
+    <script>
+      var wizard = $('#wizard');
+      wizard.wizard({'disablePreviousStep': true});
+      //.debug wizard.wizard('selectedItem', {'step': 3});
+
+      $('#filename').change(function(evt) {
+          if ($(this).val() != '') {
+              $('#file-submit').removeClass('disabled');
+          } else {
+              $('#file-submit').addClass('disabled');
+          }
+          $('#file-error').hide();
+      });
+
+      $('#file-submit').click(function(evt) {
+          evt.preventDefault();
+          var formData = new FormData();
+          formData.append("filename", $('#filename').prop('files')[0]);
+          $.ajax({
+              url: 'upload.php',
+              type: 'POST',
+              data: formData,
+              dataType: 'json',
+              cache: false,
+              contentType: false,
+              processData: false,
+              success: function(data, textStatus, jqXHR) {
+                  // console.dir(data);
+                  // console.dir(jqXHR);
+                  $('#check-rows').html('<strong>'+data.count+' rows found</strong>');
+                  var checkData = $('#check-data');
+                  var i = 1;
+                  var tr = '';
+                  data.rows.forEach(function(row) {
+                      var description = row[1];
+                      description = description.replace(/</gmi, '&lt;');
+                      description = description.replace(/>/gmi, '&gt;');
+                      tr += '<tr>';
+                      tr += '<td>' + (i++) + '</td>';
+                      tr += '<td>' + row[0] + '</td>'; // title
+                      tr += '<td>' + description + '</td>'; // description
+                      tr += '<td>' + row[2] + '</td>'; // price
+                      tr += '<td>' + row[3] + '</td>'; // init date
+                      tr += '<td>' + row[4] + '</td>'; // expiry date
+                      tr += '<td>' + row[5] + '</td>'; // merchant address
+                      tr += '<td>' + row[6] + '</td>'; // merchant name
+                      tr += '</tr>';
+                      checkData.html(tr);
+                  });
+                  wizard.wizard('next');
+              },
+              error: function(jqXHR, textStatus, thrown) {
+                  // console.dir(jqXHR);
+                  $('#file-error-message').html(jqXHR.responseJSON.message);
+                  $('#file-error').show();
+                  $('#file-submit').addClass('disabled');
+              }
+          });
+      });
+
+      $('#check-cancel').click(function(evt) {
+          // $('#filename').val('');
+          // $('#file-submit').addClass('disabled');
+          wizard.wizard('selectedItem', {'step': 1});
+      });
+
+      $('#check-import').click(function(evt) {
+          // $('#filename').val('');
+          // $('#file-submit').addClass('disabled');
+          var fileData = "filename=" + $('#filename').prop('files')[0].name;
+          $.ajax({
+              url: 'import.php',
+              type: 'GET',
+              data: fileData,
+              dataType: 'json',
+              cache: false,
+              contentType: false,
+              processData: false,
+              success: function(data, textStatus, jqXHR) {
+                  // console.dir(data);
+                  tr = '';
+                  data.productsPerMonth.forEach(function(row) {
+                      tr += '<tr>';
+                      tr += '<td>'+row.month+'</td>';
+                      tr += '<td>'+row.count+'</td>';
+                      tr += '</tr>';
+                  });
+                  $('#summary-month').html(tr);
+
+                  tr = '';
+                  data.productsPerMerchant.forEach(function(row) {
+                      tr += '<tr>';
+                      tr += '<td>'+row.merchant+'</td>';
+                      tr += '<td>'+row.count+'</td>';
+                      tr += '</tr>';
+                  });
+                  $('#summary-merchant').html(tr);
+              },
+              error: function(jqXHR, textStatus, thrown) {
+                  alert('[TODO] Unknown error');
+                  console.dir(jqXHR);
+                  console.dir(textStatus);
+              }
+          });
+          wizard.wizard('selectedItem', {'step': 3});
+      });
+
+      $('#import-more').click(function(evt) {
+          wizard.wizard('selectedItem', {'step': 1});
+          $('#filename').val('');
+          $('#file-submit').addClass('disabled');
+      });
+    </script>
+
+  </body>
+</html>
