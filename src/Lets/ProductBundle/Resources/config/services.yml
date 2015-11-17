@@ -1,0 +1,6 @@
+services:
+
+    # Definition of product services
+    product.importer:
+        class: Lets\ProductBundle\Importer\ProductImporter
+        arguments: [@doctrine.orm.entity_manager]

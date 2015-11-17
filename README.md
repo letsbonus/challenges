@@ -59,3 +59,20 @@ Evaluation of your submission will be based on the following criteria. Additiona
 1. Did your application fulfill the basic requirements?
 1. Did you document the method for setting up and running your application?
 1. Did you follow the instructions for submission?
+
+
+## To run the application
+
+This test is based on a symfony full stack application.
+
+Require [composer](https://getcomposer.org/) to build the application
+
+To run the project:
+
+1. Modify the app/config/parameters.yml and add your mysql connection settings etc...
+1. On the project folder run: composer update
+1. In the project folder run: php app/console d:d:c (to create the database)
+1. In the project folder run: php app/console d:s:u --force (generate the schema)
+1. Up the server running: php app/console server:run
+1. Resume:  composer update && php app/console d:d:c && php app/console d:s:u --force && php app/console server:run
+1. Internet access required because I'm using cdn for styles
