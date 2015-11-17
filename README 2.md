@@ -9,7 +9,7 @@ Instructions to install:
 
 	$ php composer.phar update
 
-2. Comfigure parameters.yml to access to mysql database
+2. Configure parameters.yml to access to mysql database (guided by composer)
 
 3. Create database:
 
