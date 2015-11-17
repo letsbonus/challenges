@@ -48,8 +48,8 @@ Imagine that Letsbonus has just acquired a new company.  Unfortunately, the comp
 
 - You should consider:
 
-  1. All queries should be manually generated.
-  1. If you are applying for the Senior Software PHP Developer, use of Zend Framework 1 will be appreciated.
+  1. If you are applying for the Senior Software PHP Developer, use of Symfony 2 will be appreciated.
+  2. TDD and/or BDD will be appreciated too.
 
 Your application should be easy to set up and should run on either Linux or Mac OS X.  It should not require any for-pay software.
 
