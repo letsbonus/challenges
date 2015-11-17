@@ -1,0 +1,25 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <h4>{{ 'Deja un comenario' | trans() }}</h4>
+            <form method="POST" action="" enctype="multipart/form-data">
+
+                {{ form_errors(form) }}
+                <div class="form">
+                    <div class="form-group">
+                    {{ form_errors(form.file) }}
+                    {{ form_widget(form.file) }}
+                        </div>
+
+                    {{ form_rest(form) }}
+                    <input type="submit" class="btn btn-primary" value="{{ 'Procesar' | trans() }}">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock%}

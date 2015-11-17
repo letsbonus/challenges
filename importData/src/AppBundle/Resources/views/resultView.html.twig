@@ -1,0 +1,36 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+        <h4>{{ 'Resultados por meses' | trans() }}</h4>
+        <ul>
+            {% for item in itemsPerMonth %}
+
+            <li>{{ item.month }}: {{ item.contador }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <h4>{{ 'Resultados por Merchant' | trans() }}</h4>
+            <ul>
+                {% for item in itemsPerMerchant %}
+
+                    <li>{{ item.merchantName }}: {{ item.contador }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+{% endblock%}
