@@ -1,0 +1,30 @@
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="form-group col-md-12">
+	<form action="{{path('homepage')}}" method="post" {{ form_enctype(form) }}>
+	    {{ form_widget(form) }}
+	    <input style="margin-top: 10px;" class="btn btn-success" type="submit" />
+	</form>
+</div>
+<div class="col-md-12">
+	{% if productsPerMonth is defined %}
+	<ul class="col-md-6">
+	<b>Count per month:</b>
+	{% for productMonth in productsPerMonth %}
+		<li class="col-md-12">{{date('2015-'~productMonth.initMonth~'-01')|date('M')}} - Count: {{productMonth.productCount}}</li>
+	{% endfor %}
+	{% endif %}
+	</ul>
+
+	{% if productsPerMerchant is defined %}
+	<ul class="col-md-6">
+	<b>Count per merchant:</b>
+	{% for productMerchant in productsPerMerchant %}
+		<li class="col-md-12">{{ productMerchant.merchantName }} - Count: {{productMerchant.productCount}}</li>
+	{% endfor %}
+	{% endif %}
+	</ul>
+</div>
+{% endblock %}
