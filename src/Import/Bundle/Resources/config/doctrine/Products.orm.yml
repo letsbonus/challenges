@@ -1,0 +1,38 @@
+Import\Bundle\Entity\Products:
+    type: entity
+    table: null
+    repositoryClass: Import\Bundle\Entity\ProductsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '100'
+        description:
+            type: string
+            length: 255
+        price:
+            type: decimal
+        initDatetime:
+            type: datetime
+            column: init_datetime
+        expireDatetime:
+            type: datetime
+            column: expire_datetime
+        status:
+            type: string
+            length: '100'
+        merchantId:
+            type: integer
+            column: merchant_id
+        createDatetime:
+            type: datetime
+            column: create_datetime
+        modifyDatetime:
+            type: datetime
+            column: modify_datetime
+    lifecycleCallbacks: {  }

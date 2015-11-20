@@ -10,6 +10,20 @@ In both cases, the email address you should use for submission is [github@letsbo
 
 Feel free to email the appropriate address above if you have any questions.
 
+## Install App
+Para poder instalar al app de challenger letsbonus
+
+1.- Tenamos que configurar en el fichero de app/config/parameters.yml
+
+2.- En el modo consola, nos situamos en el directorio raiz de nuestra app
+
+3.- Para poder crear la base de datos y tablas tenemos que lanzar este comando en el terminal
+  solo tenemos que ejecutar el script
+
+            $ sh install.sh
+
+4.- Iniciar el server con $ php app/console server:run
+
 ## Submission Instructions
 1. First, fork this project on github. You will need to create an account if you don't already have one.
 1. Next, complete the project as described below within your fork using a branch strategy.
