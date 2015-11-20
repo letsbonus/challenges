@@ -1,0 +1,24 @@
+Import\Bundle\Entity\Merchant:
+    type: entity
+    table: null
+    repositoryClass: Import\Bundle\Entity\MerchantRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        address:
+            type: string
+            length: 255
+        createDatetime:
+            type: datetime
+            column: create_datetime
+        modifyDatetime:
+            type: datetime
+            column: modify_datetime
+    lifecycleCallbacks: {  }

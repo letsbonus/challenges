@@ -1,0 +1,7 @@
+import_homepage:
+    path:     /
+    defaults: { _controller: ImportBundle:Default:index }
+
+list_import:
+    path:     list
+    defaults: { _controller: ImportBundle:Default:list }
