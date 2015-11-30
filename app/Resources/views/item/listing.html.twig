@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h2>Items exported:</h2>
+    <h2>Items imported:</h2>
     <table>
         <thead>
             <th>Title</th>
@@ -32,4 +32,7 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h3>Import items from file:</h3>
+    {{  form(importer) }}
 {% endblock %}

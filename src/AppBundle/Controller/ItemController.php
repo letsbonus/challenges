@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Item;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,11 +23,14 @@ class ItemController extends Controller
             ->getQuery()
             ->getResult();
 
-        return $this->render('item/listing.html.twig', ['items' => $items]);
-    }
+        $importer = $this->createFormBuilder()
+            ->add('file_items', 'file', ['label' => 'Select the file:*'])
+            ->add('upload', 'submit', ['label' => 'Send away!'])
+            ->getForm();
 
-    public function formAction(Request $request)
-    {
-        return $this->render('item/form.html.twig');
+        return $this->render('item/listing.html.twig', [
+            'items' => $items,
+            'importer' => $importer->createView()
+        ]);
     }
 }
