@@ -120,4 +120,12 @@ class Merchant
     {
         return $this->created_at;
     }
+
+    /**
+     * Merchant constructor.
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
 }

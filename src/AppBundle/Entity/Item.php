@@ -56,7 +56,7 @@ class Item
     /**
      * @ORM\ManyToOne(targetEntity="Merchant")
      */
-    private $merchant_id;
+    private $merchant;
 
     /**
      * @ORM\Column(type="datetime")
@@ -248,9 +248,9 @@ class Item
      *
      * @return Item
      */
-    public function setMerchantId(\AppBundle\Entity\Merchant $merchantId = null)
+    public function setMerchant(\AppBundle\Entity\Merchant $merchantId = null)
     {
-        $this->merchant_id = $merchantId;
+        $this->merchant = $merchantId;
 
         return $this;
     }
@@ -260,8 +260,16 @@ class Item
      *
      * @return \AppBundle\Entity\Merchant
      */
-    public function getMerchantId()
+    public function getMerchant()
     {
-        return $this->merchant_id;
+        return $this->merchant;
+    }
+
+    /**
+     * Item constructor.
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
     }
 }
