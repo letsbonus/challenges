@@ -1,3 +1,7 @@
-app_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AppBundle:Default:index }
+app_item_listing:
+    path:     /listing
+    defaults: { _controller: AppBundle:Item:listing }
+
+app_item_form:
+    path:     /form
+    defaults: { _controller: AppBundle:Item:form }

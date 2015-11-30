@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <form id="export-items" name="export_items" method="post" action="">
+        <label for="file-items">Select the file:*</label>
+        <input type="file" id="file-items" name="file_items" value="" placeholder="The tab file" accept=".tab" required="required" autofocus="autofocus">
+
+        <input type="submit" value="Send away!" id="submit" />
+    </form>
+{% endblock %}

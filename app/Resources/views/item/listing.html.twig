@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h2>Items exported:</h2>
+    <table>
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Init Date
+            <th>Expiry Date</th>
+            <th>Status</th>
+            <th>Merchant Name</th>
+            <th>Merchant Address</th>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.init_date is empty ? "" : item.init_date|date('Y-m-d') }}</td>
+                <td>{{ item.expiry_date is empty ? "" : item.expiry_date|date('Y-m-d') }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.merchant.name }}</td>
+                <td>{{ item.merchant.address }}</td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="*">There are no items!</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
