@@ -8,7 +8,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Item;
+use AppBundle\Form\Type\ImporterFileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,14 +23,22 @@ class ItemController extends Controller
             ->getQuery()
             ->getResult();
 
-        $importer = $this->createFormBuilder()
-            ->add('file_items', 'file', ['label' => 'Select the file:*'])
-            ->add('upload', 'submit', ['label' => 'Send away!'])
-            ->getForm();
+        $form = $this->createForm(new ImporterFileType());
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $file = $form->get('file')->getData();
+
+            //TODO: process file
+
+            return $this->redirect($this->generateUrl('item_listing'));
+        }
 
         return $this->render('item/listing.html.twig', [
             'items' => $items,
-            'importer' => $importer->createView()
+            'importer' => $form->createView()
         ]);
     }
 }

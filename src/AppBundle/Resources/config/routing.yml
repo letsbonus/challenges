@@ -1,3 +1,3 @@
-app_item_listing:
+item_listing:
     path:     /listing
     defaults: { _controller: AppBundle:Item:listing }
