@@ -35,6 +35,11 @@ class Merchant
     private $address;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
      * Get id
      *
      * @return integer
@@ -90,5 +95,29 @@ class Merchant
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Merchant
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
     }
 }
