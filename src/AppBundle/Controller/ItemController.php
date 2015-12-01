@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: ismael
  * Date: 30/11/15
- * Time: 20:37
+ * Time: 20:37.
  */
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
@@ -21,19 +20,18 @@ class ItemController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('year','year');
-        $rsm->addScalarResult('month','month');
-        $rsm->addScalarResult('total','total');
+        $rsm->addScalarResult('year', 'year');
+        $rsm->addScalarResult('month', 'month');
+        $rsm->addScalarResult('total', 'total');
 
         $sql = 'SELECT YEAR(init_date) as year, MONTH(init_date) as month, COUNT(id) AS total FROM item GROUP BY year, month;';
         $items_by_month = $em
             ->createNativeQuery($sql, $rsm)
             ->getResult();
 
-
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('merchant_name', 'merchant');
-        $rsm->addScalarResult('total','total');
+        $rsm->addScalarResult('total', 'total');
 
         $sql = 'SELECT merchant_name, COUNT(id) AS total FROM item GROUP BY merchant_name;';
         $items_by_merchant = $em
@@ -45,13 +43,12 @@ class ItemController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $file = $form->get('file')->getData();
             $file_path = $file->getPathname();
 
             $skiped_header = false;
-            if (($handle = fopen($file_path, 'r')) !== FALSE) {
-                while (($row = fgetcsv($handle, 0, "\t")) !== FALSE) {
+            if (($handle = fopen($file_path, 'r')) !== false) {
+                while (($row = fgetcsv($handle, 0, "\t")) !== false) {
                     if (!$skiped_header) {
                         $skiped_header = true;
                     } else {
@@ -79,7 +76,7 @@ class ItemController extends Controller
         return $this->render('item/listing.html.twig', [
             'items_by_month' => $items_by_month,
             'items_by_merchant' => $items_by_merchant,
-            'importer' => $form->createView()
+            'importer' => $form->createView(),
         ]);
     }
 }

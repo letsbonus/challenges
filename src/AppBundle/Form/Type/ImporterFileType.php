@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: ismael
  * Date: 30/11/15
- * Time: 22:19
+ * Time: 22:19.
  */
-
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +23,7 @@ class ImporterFileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'file' => ''
+            'file' => '',
         ]);
 
         $resolver->setRequired('file');

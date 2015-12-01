@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: ismael
  * Date: 30/11/15
- * Time: 14:29
+ * Time: 14:29.
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -68,8 +67,6 @@ class Item
      */
     private $created_at;
 
-
-
     /**
      * Item constructor.
      */
@@ -79,11 +76,10 @@ class Item
         $this->status = 'created';
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -91,7 +87,7 @@ class Item
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -105,7 +101,7 @@ class Item
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -115,7 +111,7 @@ class Item
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -129,7 +125,7 @@ class Item
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -139,7 +135,7 @@ class Item
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param string $price
      *
@@ -153,7 +149,7 @@ class Item
     }
 
     /**
-     * Get price
+     * Get price.
      *
      * @return string
      */
@@ -163,7 +159,7 @@ class Item
     }
 
     /**
-     * Set initDate
+     * Set initDate.
      *
      * @param \DateTime $initDate
      *
@@ -177,7 +173,7 @@ class Item
     }
 
     /**
-     * Get initDate
+     * Get initDate.
      *
      * @return \DateTime
      */
@@ -187,7 +183,7 @@ class Item
     }
 
     /**
-     * Set expiryDate
+     * Set expiryDate.
      *
      * @param \DateTime $expiryDate
      *
@@ -201,7 +197,7 @@ class Item
     }
 
     /**
-     * Get expiryDate
+     * Get expiryDate.
      *
      * @return \DateTime
      */
@@ -211,7 +207,7 @@ class Item
     }
 
     /**
-     * Set status
+     * Set status.
      *
      * @param string $status
      *
@@ -225,7 +221,7 @@ class Item
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return string
      */
@@ -235,7 +231,7 @@ class Item
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -249,7 +245,7 @@ class Item
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -259,7 +255,7 @@ class Item
     }
 
     /**
-     * Set merchantName
+     * Set merchantName.
      *
      * @param string $merchantName
      *
@@ -273,7 +269,7 @@ class Item
     }
 
     /**
-     * Get merchantName
+     * Get merchantName.
      *
      * @return string
      */
@@ -283,7 +279,7 @@ class Item
     }
 
     /**
-     * Set merchantAddress
+     * Set merchantAddress.
      *
      * @param string $merchantAddress
      *
@@ -297,7 +293,7 @@ class Item
     }
 
     /**
-     * Get merchantAddress
+     * Get merchantAddress.
      *
      * @return string
      */
