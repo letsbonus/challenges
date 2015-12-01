@@ -1,0 +1,3 @@
+item_listing:
+    path:     /
+    defaults: { _controller: AppBundle:Item:listing }

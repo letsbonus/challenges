@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <h2>Import items from file:</h2>
+    {{  form(importer) }}
+
+
+    <h3>Imported items (monthly):</h3>
+    <table>
+        <thead>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Total</th>
+        </thead>
+        <tbody>
+        {% for item in items_by_month %}
+            <tr>
+                <td>{{ item.year }}</td>
+                <td>{{ item.month }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="*">There are no items!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h3>Imported items (by merchant):</h3>
+    <table>
+        <thead>
+        <th>Merchant</th>
+        <th>Total</th>
+        </thead>
+        <tbody>
+        {% for item in items_by_merchant %}
+            <tr>
+                <td>{{ item.merchant }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="*">There are no items!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
