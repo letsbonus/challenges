@@ -54,14 +54,31 @@ class Item
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Merchant")
+     * @ORM\Column(type="string", length=255)
      */
-    private $merchant;
+    private $merchant_name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $merchant_address;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+
+
+    /**
+     * Item constructor.
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->status = 'created';
+    }
+
 
     /**
      * Get id
@@ -242,34 +259,50 @@ class Item
     }
 
     /**
-     * Set merchantId
+     * Set merchantName
      *
-     * @param \AppBundle\Entity\Merchant $merchantId
+     * @param string $merchantName
      *
      * @return Item
      */
-    public function setMerchant(\AppBundle\Entity\Merchant $merchantId = null)
+    public function setMerchantName($merchantName)
     {
-        $this->merchant = $merchantId;
+        $this->merchant_name = $merchantName;
 
         return $this;
     }
 
     /**
-     * Get merchantId
+     * Get merchantName
      *
-     * @return \AppBundle\Entity\Merchant
+     * @return string
      */
-    public function getMerchant()
+    public function getMerchantName()
     {
-        return $this->merchant;
+        return $this->merchant_name;
     }
 
     /**
-     * Item constructor.
+     * Set merchantAddress
+     *
+     * @param string $merchantAddress
+     *
+     * @return Item
      */
-    public function __construct()
+    public function setMerchantAddress($merchantAddress)
     {
-        $this->created_at = new \DateTime();
+        $this->merchant_address = $merchantAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get merchantAddress
+     *
+     * @return string
+     */
+    public function getMerchantAddress()
+    {
+        return $this->merchant_address;
     }
 }

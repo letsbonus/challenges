@@ -19,11 +19,11 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.price }}</td>
-                <td>{{ item.init_date is empty ? "" : item.init_date|date('Y-m-d') }}</td>
-                <td>{{ item.expiry_date is empty ? "" : item.expiry_date|date('Y-m-d') }}</td>
+                <td>{{ item.initdate is empty ? "" : item.initdate|date('Y-m-d') }}</td>
+                <td>{{ item.expirydate is empty ? "" : item.expirydate|date('Y-m-d') }}</td>
                 <td>{{ item.status }}</td>
-                <td>{{ item.merchant.name }}</td>
-                <td>{{ item.merchant.address }}</td>
+                <td>{{ item.merchantname }}</td>
+                <td>{{ item.merchantaddress }}</td>
             </tr>
             {% else %}
                 <tr>
