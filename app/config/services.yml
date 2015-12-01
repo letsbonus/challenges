@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.manager.item:
+        class: AppBundle\Entity\ItemManager
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+
+    app.manager.import:
+        class: AppBundle\Entity\ImportManager
+        arguments:
+            em: "@doctrine.orm.entity_manager"
