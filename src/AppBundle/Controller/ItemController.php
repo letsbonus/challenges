@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
 use AppBundle\Form\Type\ImporterFileType;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,9 +20,24 @@ class ItemController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $items = $em->getRepository('AppBundle:Item')
-            ->createQueryBuilder('i')
-            ->getQuery()
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('year','year');
+        $rsm->addScalarResult('month','month');
+        $rsm->addScalarResult('total','total');
+
+        $sql = 'SELECT YEAR(init_date) as year, MONTH(init_date) as month, COUNT(id) AS total FROM item GROUP BY year, month;';
+        $items_by_month = $em
+            ->createNativeQuery($sql, $rsm)
+            ->getResult();
+
+
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('merchant_name', 'merchant');
+        $rsm->addScalarResult('total','total');
+
+        $sql = 'SELECT merchant_name, COUNT(id) AS total FROM item GROUP BY merchant_name;';
+        $items_by_merchant = $em
+            ->createNativeQuery($sql, $rsm)
             ->getResult();
 
         $form = $this->createForm(new ImporterFileType());
@@ -61,7 +77,8 @@ class ItemController extends Controller
         }
 
         return $this->render('item/listing.html.twig', [
-            'items' => $items,
+            'items_by_month' => $items_by_month,
+            'items_by_merchant' => $items_by_merchant,
             'importer' => $form->createView()
         ]);
     }
