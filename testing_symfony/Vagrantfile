@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+  # Virtul config
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--cpus", "2"]
+  end
+
+
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.2.254"
+
+  # Provisioning Script
+  # --------------------
+  config.vm.provision "shell", path: "./vagrant/init.sh"
+
+  # Synced Folder
+  # --------------------
+  config.vm.synced_folder "./vagrant", "/vagrant/", :mount_options => [ "dmode=777", "fmode=777" ]
+  config.vm.synced_folder ".", "/var/www_data/challenge", :mount_options => [ "dmode=777", "fmode=777" ], :owner => 'www-data', :group => 'www-data'
+
+end
