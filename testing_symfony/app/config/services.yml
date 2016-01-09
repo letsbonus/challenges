@@ -7,3 +7,16 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+product_repository:
+      class: AppBundle\Domain\Model\ProductRepository
+      factory_service: doctrine.orm.entity_manager
+      factory_method: getRepository
+      arguments:
+        - AppBundle\Domain\Model\Product
+  merchant_repository:
+      class: AppBundle\Domain\Model\MerchantRepository
+      factory_service: doctrine.orm.entity_manager
+      factory_method: getRepository
+      arguments:
+        - AppBundle\Domain\Model\Merchant
+  
