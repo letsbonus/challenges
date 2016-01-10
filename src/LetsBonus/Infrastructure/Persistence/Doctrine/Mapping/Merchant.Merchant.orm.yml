@@ -1,0 +1,23 @@
+LetsBonus\Domain\Model\Merchant\Merchant:
+    type: entity
+    table: Lets_Merchant
+    repositoryClass: LetsBonus\Infrastructure\Persistence\Domain\Model\Merchant\MerchantRepository
+    id:
+        id:
+            type: string
+            length: 32
+            generator: { strategy: NONE }
+    fields:
+        name:
+            type: string
+            length: 70
+
+        address:
+            type: string
+            length: 70
+            nullable: true
+
+    oneToMany:
+        products:
+            targetEntity: LetsBonus\Domain\Model\Product\Product
+            mappedBy: merchant

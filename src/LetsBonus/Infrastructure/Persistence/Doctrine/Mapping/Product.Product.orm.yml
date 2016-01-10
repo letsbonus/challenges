@@ -1,0 +1,38 @@
+LetsBonus\Domain\Model\Product\Product:
+    type: entity
+    table: Lets_Product
+    repositoryClass: LetsBonus\Infrastructure\Persistence\Domain\Model\Product\ProductRepository
+    id:
+        id:
+            type: string
+            length: 32
+            generator: { strategy: NONE }
+    fields:
+        title:
+            type: string
+            length: 70
+
+        description:
+            type: string
+            length: 255
+            nullable: true
+
+        price:
+            type: float
+            nullable: false
+
+        initDate:
+            type: datetime
+            nullable: false
+
+        expiryDate:
+            type: datetime
+            nullable: false
+
+    manyToOne:
+        merchant:
+            targetEntity: LetsBonus\Domain\Model\Merchant\Merchant
+            joinColumn: merchant
+            referencedColumnName: id
+            cascade: [persist]
+            inversedBy: products

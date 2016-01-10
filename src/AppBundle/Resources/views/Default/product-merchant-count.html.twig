@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <div id="welcome">
+        <h1>LetsBonus challenge</h1>
+    </div>
+    <hr />
+    <h2>Products per month</h2>
+    <table class="products-per-month">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Products count</th>
+            </tr>
+        </thead>
+        {% for product in info.productCount %}
+            <tr>
+                <td>{{ product.year }}</td>
+                <td>{{ product.month }}</td>
+                <td>{{ product.number }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr />
+    <h2>Products per merchant</h2>
+    <table class="products-per-merchant">
+        <thead>
+        <tr>
+            <th>Merchant name</th>
+            <th>Products count</th>
+        </tr>
+        </thead>
+        {% for merchant in info.merchantCount %}
+            <tr>
+                <td>{{ merchant.name }}</td>
+                <td>{{ merchant.count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

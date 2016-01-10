@@ -1,0 +1,24 @@
+services:
+
+    normalize_tab_data_service:
+        class: LetsBonus\Domain\ExternalData\NormalizedDataItem\Service\NormalizeTabDataService
+
+    merchant_repository:
+        class: LetsBonus\Infrastructure\Persistence\Domain\Model\Merchant\MerchantRepository
+        factory: [@doctrine, "getRepository"]
+        arguments:
+            - "LetsBonusDomain:Merchant\\Merchant"
+
+    product_repository:
+        class: LetsBonus\Infrastructure\Persistence\Domain\Model\Product\ProductRepository
+        factory: [@doctrine, "getRepository"]
+        arguments:
+            - "LetsBonusDomain:Product\\Product"
+
+    store_product_info_use_case:
+        class: LetsBonus\Application\StoreProductInfo\StoreProductInfoUseCase
+        arguments: [@normalize_tab_data_service, @merchant_repository, @product_repository]
+
+    get_product_merchant_count:
+        class: LetsBonus\Application\GetProductMerchantCount\GetProductMerchantCountUseCase
+        arguments: [@product_repository, @merchant_repository]
