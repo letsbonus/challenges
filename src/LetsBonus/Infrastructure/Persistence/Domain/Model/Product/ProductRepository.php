@@ -17,9 +17,21 @@ class ProductRepository extends EntityRepository implements IProductRepository
     public function saveCollection($products)
     {
         foreach ($products as $product) {
-            $this->getEntityManager()->persist($product);
+            if (!$this->productExists($product)) {
+                $this->getEntityManager()->persist($product);
+            }
         }
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return bool
+     */
+    private function productExists(Product $product)
+    {
+        return $this->findBy(['title' => $product->title()]);
     }
 
     /**

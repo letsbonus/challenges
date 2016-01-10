@@ -17,8 +17,20 @@ class MerchantRepository extends EntityRepository implements IMerchantRepository
     public function saveCollection($merchants)
     {
         foreach ($merchants as $merchant) {
-            $this->getEntityManager()->persist($merchant);
+            if (!$this->merchantExists($merchant)) {
+                $this->getEntityManager()->persist($merchant);
+            }
         }
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * @param Merchant $merchant
+     *
+     * @return array
+     */
+    private function merchantExists(Merchant $merchant)
+    {
+        return $this->findBy(['name' => $merchant->name()]);
     }
 }
