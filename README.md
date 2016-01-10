@@ -14,4 +14,4 @@ Para ejecutar los test desde consola:
 ## Sqlite
 En app se ha creado una tabla sqlite para registrar la info en base de datos:
     create table Lets_Merchant(id varchar(32) primary key, name varchar(70), address varchar(70));
-    create table Lets_Product(id varchar(32) primary key, merchant_id varchar(32), title varchar(70), description varchar(255), price double, init_date datetime, expiry_date datetime, FOREIGN KEY(merchant_id) REFERENCES Lets_Product(id));
+    create table Lets_Product(id varchar(32) primary key, merchant_id varchar(32), title varchar(70), description varchar(255), price double, init_date datetime, expiry_date datetime, FOREIGN KEY(merchant_id) REFERENCES Lets_Merchant(id));
