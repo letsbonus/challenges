@@ -4,6 +4,7 @@ namespace AppBundle\Resources\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -15,17 +16,12 @@ class UploadTabFileFormType extends AbstractType
     {
         $builder
             ->add('tabfile', FileType::class, array('label' => 'Tab file:'))
-            ->add('Upload file', 'submit')
+            ->add('send', SubmitType::class)
             ->setAction($options['action'])
         ;
     }
 
-    /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
-     */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'uploadtabfileform';
     }
