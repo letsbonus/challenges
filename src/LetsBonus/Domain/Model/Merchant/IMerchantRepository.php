@@ -11,4 +11,9 @@ interface IMerchantRepository
      * @param Merchant[] $merchants
      */
     public function saveCollection($merchants);
+
+    /**
+     * @return Merchant[]
+     */
+    public function findAll();
 }

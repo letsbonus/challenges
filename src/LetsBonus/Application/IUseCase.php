@@ -12,5 +12,5 @@ interface IUseCase
      *
      * @return mixed
      */
-    public function execute(IUseCaseRequest $request);
+    public function execute(IUseCaseRequest $request = null);
 }

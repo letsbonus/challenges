@@ -11,4 +11,9 @@ interface IProductRepository
      * @param Product[] $products
      */
     public function saveCollection($products);
+
+    /**
+     * @return Product[]
+     */
+    public function findProductsPerMonth();
 }
