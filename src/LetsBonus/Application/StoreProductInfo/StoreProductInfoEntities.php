@@ -34,12 +34,17 @@ class StoreProductInfoEntities
 
     /**
      * @param Merchant $merchant
+     *
+     * @return Merchant
      */
     public function addMerchant(Merchant $merchant)
     {
         if (!isset($this->merchants[$merchant->name()])) {
             $this->merchants[$merchant->name()] = $merchant;
+
         }
+
+        return $this->merchants[$merchant->name()];
     }
 
     /**

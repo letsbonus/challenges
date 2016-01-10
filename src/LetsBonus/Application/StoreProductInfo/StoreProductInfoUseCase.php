@@ -93,9 +93,12 @@ class StoreProductInfoUseCase implements IUseCase
         StoreProductInfoEntities $entitiesContainer,
         NormalizedDataItem $normalizedDataItem
     ) {
-        $merchant = $this->buildMerchant($normalizedDataItem);
-        $entitiesContainer->addMerchant($merchant);
-        $entitiesContainer->addProduct($this->buildProduct($normalizedDataItem, $merchant));
+        $entitiesContainer->addProduct(
+            $this->buildProduct(
+                $normalizedDataItem,
+                $entitiesContainer->addMerchant($this->buildMerchant($normalizedDataItem))
+            )
+        );
     }
 
     /**
