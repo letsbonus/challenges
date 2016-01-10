@@ -18,6 +18,9 @@ Vagrant.configure(2) do |config|
   # Provisioning Script
   # --------------------
   config.vm.provision "shell", path: "./vagrant/init.sh"
+
+  # Database Create
+  # ---------------
   config.vm.provision "shell", path: "./vagrant/database.sh"
 
   # Synced Folder
