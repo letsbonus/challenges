@@ -6,7 +6,7 @@ use LetsBonus\Application\GetProductMerchantCount\GetProductMerchantCountUseCase
 use LetsBonus\Domain\Model\Merchant\IMerchantRepository;
 use LetsBonus\Domain\Model\Merchant\Merchant;
 use LetsBonus\Domain\Model\Product\IProductRepository;
-use LetsBonus\Domain\Model\Product\Product;
+use LetsBonus\Test\Domain\Model\Product\FakeProductBuilder;
 use Mockery;
 
 /**
@@ -51,23 +51,13 @@ class GetProductMerchantCountUseCaseTest extends \PHPUnit_Framework_TestCase
     {
         $merchant1 = new Merchant('Joyeria Baguette', 'Address');
         $merchant1
-            ->addProduct($this->buildProduct($merchant1))
-            ->addProduct($this->buildProduct($merchant1));
+            ->addProduct(FakeProductBuilder::buildProductForMerchant($merchant1))
+            ->addProduct(FakeProductBuilder::buildProductForMerchant($merchant1));
 
         $merchant2 = new Merchant('Deportes Placídia', 'Address2');
-        $merchant2->addProduct($this->buildProduct($merchant2));
+        $merchant2->addProduct(FakeProductBuilder::buildProductForMerchant($merchant2));
 
         return [$merchant1, $merchant2];
-    }
-
-    /**
-     * @param $merchant1
-     *
-     * @return Product
-     */
-    private function buildProduct($merchant1)
-    {
-        return new Product('title', 'description', 9.00, new \Datetime(), new \Datetime(), $merchant1);
     }
 
     /**
