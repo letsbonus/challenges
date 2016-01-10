@@ -16,3 +16,8 @@ LetsBonus\Domain\Model\Merchant\Merchant:
             type: string
             length: 70
             nullable: true
+
+    oneToMany:
+        products:
+            targetEntity: LetsBonus\Domain\Model\Product\Product
+            mappedBy: merchant

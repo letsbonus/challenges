@@ -31,7 +31,8 @@ LetsBonus\Domain\Model\Product\Product:
 
     manyToOne:
         merchant:
-            targetEntity: Letsbonus\Domain\Model\Merchant\Merchant
+            targetEntity: LetsBonus\Domain\Model\Merchant\Merchant
             joinColumn: merchant
             referencedColumnName: id
             cascade: [persist]
+            inversedBy: products

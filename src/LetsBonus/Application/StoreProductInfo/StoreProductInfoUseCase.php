@@ -46,8 +46,12 @@ class StoreProductInfoUseCase implements IUseCase
      *
      * @return StoreProductInfoUseCaseResponse
      */
-    public function execute(IUseCaseRequest $request)
+    public function execute(IUseCaseRequest $request = null)
     {
+        if ($request === null) {
+            throw new \InvalidArgumentException('StoreProductInfoUseCaseRequest is mandatory');
+        }
+
         $normalizedData = $this->normalizeDataService->normalize(
             new NormalizeDataServiceRequest($request->uploadFileContent())
         );
@@ -67,7 +71,11 @@ class StoreProductInfoUseCase implements IUseCase
         $this->saveMerchants($entities->merchants());
         $this->saveProducts($entities->products());
 
-        return new StoreProductInfoUseCaseResponse(count($normalizedData), count($entities->merchants()), count($entities->products()));
+        return new StoreProductInfoUseCaseResponse(
+            count($normalizedData),
+            count($entities->merchants()),
+            count($entities->products())
+        );
     }
 
     /**

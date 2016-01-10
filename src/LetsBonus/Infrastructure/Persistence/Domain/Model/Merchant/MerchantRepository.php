@@ -9,7 +9,7 @@ use LetsBonus\Domain\Model\Merchant\Merchant;
 /**
  * Class MerchantRepository
  */
-class MerchantRepository extends EntityRepository  implements IMerchantRepository
+class MerchantRepository extends EntityRepository implements IMerchantRepository
 {
     /**
      * @param Merchant[] $merchants
