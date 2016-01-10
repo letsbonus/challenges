@@ -3,10 +3,10 @@
 namespace LetsBonus\Test\Application\StoreProductInfo;
 
 use LetsBonus\Application\StoreProductInfo\StoreProductInfoUseCaseRequest;
-use LetsBonus\Domain\Core\Merchant\IMerchantRepository;
-use LetsBonus\Domain\Core\Merchant\Merchant;
-use LetsBonus\Domain\Core\Product\IProductRepository;
-use LetsBonus\Domain\Core\Product\Product;
+use LetsBonus\Domain\Model\Merchant\IMerchantRepository;
+use LetsBonus\Domain\Model\Merchant\Merchant;
+use LetsBonus\Domain\Model\Product\IProductRepository;
+use LetsBonus\Domain\Model\Product\Product;
 use LetsBonus\Domain\ExternalData\NormalizedDataItem\NormalizedDataItem;
 use LetsBonus\Domain\ExternalData\NormalizedDataItem\Service\INormalizeDataService;
 use Mockery;
@@ -34,6 +34,20 @@ class StoreProductInfoUseCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function itShouldReturnRowsMerchantAndProductsCountWhenDataIsReceived()
+    {
+        $storeProductInfoUseCase = $this->buildStoreProductInfoUseCase();
+        $storeProductInfoUseCaseRequest = $this->buildStoreProductInfoUseCaseRequest();
+        $storeProductInfoUseCaseResponse = $storeProductInfoUseCase->execute($storeProductInfoUseCaseRequest);
+
+        $this->assertTrue($storeProductInfoUseCaseResponse->nRows() === 1);
+        $this->assertTrue($storeProductInfoUseCaseResponse->merchantsCount() === 1);
+        $this->assertTrue($storeProductInfoUseCaseResponse->productsCount() === 1);
+    }
+
+    /**
      * @return SpyStoreProductInfoUseCase
      */
     private function buildStoreProductInfoUseCase()
@@ -53,9 +67,12 @@ class StoreProductInfoUseCaseTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @return StoreProductInfoUseCaseRequest
+     */
     private function buildStoreProductInfoUseCaseRequest()
     {
-        return new StoreProductInfoUseCaseRequest('');
+        return new StoreProductInfoUseCaseRequest('Request Data is not relevant here, it is in normalizeDataService');
     }
 
     /**

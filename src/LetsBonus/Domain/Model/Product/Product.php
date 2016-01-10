@@ -4,6 +4,7 @@ namespace LetsBonus\Domain\Model\Product;
 
 use LetsBonus\Domain\Assertion;
 use LetsBonus\Domain\Identifier;
+use LetsBonus\Domain\Model\Merchant\Merchant;
 
 /**
  * Class Product
@@ -28,21 +29,32 @@ class Product
     /** @var \DateTime */
     private $expiryDate;
 
+    /** @var Merchant */
+    private $merchant;
+
     /**
      * @param string    $title
      * @param string    $description
      * @param float     $price
      * @param \DateTime $initDate
      * @param \DateTime $expiryDate
+     * @param Merchant  $merchant
      */
-    public function __construct($title, $description, $price, \DateTime $initDate, \DateTime $expiryDate)
-    {
+    public function __construct(
+        $title,
+        $description,
+        $price,
+        \DateTime $initDate,
+        \DateTime $expiryDate,
+        Merchant $merchant
+    ) {
         $this->id = Identifier::createIdentity();
         $this->setTitle($title);
         $this->setDescription($description);
         $this->setPrice($price);
         $this->setInitDate($initDate);
         $this->setExpiryDate($expiryDate);
+        $this->setMerchant($merchant);
     }
 
     /**
@@ -134,5 +146,13 @@ class Product
     private function setExpiryDate(\DateTime $expiryDate)
     {
         $this->expiryDate = $expiryDate;
+    }
+
+    /**
+     * @param Merchant $merchant
+     */
+    private function setMerchant(Merchant $merchant)
+    {
+        $this->merchant = $merchant;
     }
 }

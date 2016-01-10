@@ -2,8 +2,8 @@
 
 namespace LetsBonus\Application\StoreProductInfo;
 
-use LetsBonus\Domain\Core\Merchant\Merchant;
-use LetsBonus\Domain\Core\Product\Product;
+use LetsBonus\Domain\Model\Merchant\Merchant;
+use LetsBonus\Domain\Model\Product\Product;
 
 /**
  * Class StoreProductInfoEntities

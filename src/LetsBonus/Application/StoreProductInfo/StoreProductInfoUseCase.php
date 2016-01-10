@@ -4,10 +4,10 @@ namespace LetsBonus\Application\StoreProductInfo;
 
 use LetsBonus\Application\IUseCase;
 use LetsBonus\Application\IUseCaseRequest;
-use LetsBonus\Domain\Core\Merchant\IMerchantRepository;
-use LetsBonus\Domain\Core\Merchant\Merchant;
-use LetsBonus\Domain\Core\Product\IProductRepository;
-use LetsBonus\Domain\Core\Product\Product;
+use LetsBonus\Domain\Model\Merchant\IMerchantRepository;
+use LetsBonus\Domain\Model\Merchant\Merchant;
+use LetsBonus\Domain\Model\Product\IProductRepository;
+use LetsBonus\Domain\Model\Product\Product;
 use LetsBonus\Domain\ExternalData\NormalizedDataItem\NormalizedDataItem;
 use LetsBonus\Domain\ExternalData\NormalizedDataItem\Service\INormalizeDataService;
 use LetsBonus\Domain\ExternalData\NormalizedDataItem\Service\NormalizeDataServiceRequest;
@@ -52,11 +52,13 @@ class StoreProductInfoUseCase implements IUseCase
             new NormalizeDataServiceRequest($request->uploadFileContent())
         );
 
-        $this->storeProductsInfo($normalizedData);
+        return $this->storeProductsInfo($normalizedData);
     }
 
     /**
-     * @param NormalizedDataItem[] $normalizedData
+     * @param $normalizedData
+     *
+     * @return StoreProductInfoUseCaseResponse
      */
     private function storeProductsInfo($normalizedData)
     {
@@ -64,6 +66,8 @@ class StoreProductInfoUseCase implements IUseCase
 
         $this->saveMerchants($entities->merchants());
         $this->saveProducts($entities->products());
+
+        return new StoreProductInfoUseCaseResponse(count($normalizedData), count($entities->merchants()), count($entities->products()));
     }
 
     /**
@@ -89,23 +93,26 @@ class StoreProductInfoUseCase implements IUseCase
         StoreProductInfoEntities $entitiesContainer,
         NormalizedDataItem $normalizedDataItem
     ) {
-        $entitiesContainer->addProduct($this->buildProduct($normalizedDataItem));
-        $entitiesContainer->addMerchant($this->buildMerchant($normalizedDataItem));
+        $merchant = $this->buildMerchant($normalizedDataItem);
+        $entitiesContainer->addMerchant($merchant);
+        $entitiesContainer->addProduct($this->buildProduct($normalizedDataItem, $merchant));
     }
 
     /**
      * @param NormalizedDataItem $normalizedDataItem
+     * @param Merchant           $merchant
      *
      * @return Product
      */
-    private function buildProduct(NormalizedDataItem $normalizedDataItem)
+    private function buildProduct(NormalizedDataItem $normalizedDataItem, Merchant $merchant)
     {
         return new Product(
             $normalizedDataItem->title(),
             $normalizedDataItem->description(),
             $normalizedDataItem->price(),
             $normalizedDataItem->initDate(),
-            $normalizedDataItem->expiryDate()
+            $normalizedDataItem->expiryDate(),
+            $merchant
         );
     }
 

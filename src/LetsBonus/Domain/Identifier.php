@@ -11,6 +11,6 @@ class Identifier
 {
     public static function createIdentity()
     {
-        return Uuid::uuid4();
+        return (string) Uuid::uuid4();
     }
 }
