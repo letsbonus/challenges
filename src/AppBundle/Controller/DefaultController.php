@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Resources\Form\UploadTabFileFormType;
+use LetsBonus\Application\GetProductMerchantCount\GetProductMerchantCountUseCaseResponse;
 use LetsBonus\Application\StoreProductInfo\StoreProductInfoUseCaseRequest;
 use LetsBonus\Application\StoreProductInfo\StoreProductInfoUseCaseResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,7 +23,7 @@ class DefaultController extends Controller
     {
         $form = $this->createForm(UploadTabFileFormType::class, null, ['action' => $this->generateUrl('upload-file')]);
 
-        return $this->render('AppBundle:Default:default.html.twig', [
+        return $this->render('AppBundle:Default:upload-form.html.twig', [
                 'form' => $form->createView(),
         ]);
     }
@@ -92,6 +93,21 @@ class DefaultController extends Controller
      */
     public function productCountAction()
     {
-        throw new \BadMethodCallException('Method not implemented yet');
+        $getProductMerchantCount = $this->getProductMerchantCount();
+
+        return $this->render('AppBundle:Default:product-merchant-count.html.twig', [
+            'info' => [
+                'productCount' => $getProductMerchantCount->productsPerMonth(),
+                'merchantCount' => $getProductMerchantCount->productsPerMerchant()
+            ]
+        ]);
+    }
+
+    /**
+     * @return GetProductMerchantCountUseCaseResponse
+     */
+    private function getProductMerchantCount()
+    {
+        return $this->container->get('get_product_merchant_count')->execute();
     }
 }

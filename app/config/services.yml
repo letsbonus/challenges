@@ -18,3 +18,7 @@ services:
     store_product_info_use_case:
         class: LetsBonus\Application\StoreProductInfo\StoreProductInfoUseCase
         arguments: [@normalize_tab_data_service, @merchant_repository, @product_repository]
+
+    get_product_merchant_count:
+        class: LetsBonus\Application\GetProductMerchantCount\GetProductMerchantCountUseCase
+        arguments: [@product_repository, @merchant_repository]

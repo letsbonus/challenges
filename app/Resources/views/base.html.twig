@@ -20,7 +20,18 @@
             </div>
         {% endfor %}
 
-        {% block body %}{% endblock %}
+        <div id="wrapper">
+            <div id="container">
+                {% block body %}{% endblock %}
+
+                <hr />
+
+                <div>
+                    <a href="{{ path('homepage') }}">Upload form</a> |
+                    <a href="{{ path('product-count') }}">Products Info</a>
+                </div>
+            </div>
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
