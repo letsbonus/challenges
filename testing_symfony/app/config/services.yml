@@ -7,7 +7,7 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-product_repository:
+  product_repository:
       class: AppBundle\Domain\Model\ProductRepository
       factory_service: doctrine.orm.entity_manager
       factory_method: getRepository
@@ -19,4 +19,8 @@ product_repository:
       factory_method: getRepository
       arguments:
         - AppBundle\Domain\Model\Merchant
-  
+  migrate_product_from_file:
+      class: AppBundle\Application\Handler\Command\MigrateProductFromFileCommand
+      arguments:
+          - @product_repository
+          - @merchant_repository
