@@ -1,6 +1,6 @@
 <?php
 
-namespace LetsBonus\Domain\Core\Merchant;
+namespace LetsBonus\Domain\Model\Merchant;
 
 use LetsBonus\Domain\Assertion;
 use LetsBonus\Domain\Identifier;

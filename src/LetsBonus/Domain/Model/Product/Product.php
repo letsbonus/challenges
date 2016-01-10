@@ -1,6 +1,6 @@
 <?php
 
-namespace LetsBonus\Domain\Core\Product;
+namespace LetsBonus\Domain\Model\Product;
 
 use LetsBonus\Domain\Assertion;
 use LetsBonus\Domain\Identifier;
@@ -37,7 +37,7 @@ class Product
      */
     public function __construct($title, $description, $price, \DateTime $initDate, \DateTime $expiryDate)
     {
-        $this->setId();
+        $this->id = Identifier::createIdentity();
         $this->setTitle($title);
         $this->setDescription($description);
         $this->setPrice($price);
@@ -91,11 +91,6 @@ class Product
     public function expiryDate()
     {
         return $this->expiryDate;
-    }
-
-    private function setId()
-    {
-        $this->id = Identifier::createIdentity();
     }
 
     /**

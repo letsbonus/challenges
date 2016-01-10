@@ -1,6 +1,6 @@
 <?php
 
-namespace LetsBonus\Domain\Core\Product;
+namespace LetsBonus\Domain\Model\Product;
 
 /**
  * Interface IProductRepository

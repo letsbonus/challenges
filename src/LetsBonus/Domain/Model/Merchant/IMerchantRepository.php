@@ -1,6 +1,6 @@
 <?php
 
-namespace LetsBonus\Domain\Core\Merchant;
+namespace LetsBonus\Domain\Model\Merchant;
 
 /**
  * Interface IMerchantRepository
