@@ -1,7 +1,17 @@
-- He instalado una extension Doctrine mediante composer para poder utilizar la funcion MONTH en el querybuilder de doctrine
+- Framework: Symfony
+
+- He instalado una extension Doctrine mediante composer para poder utilizar la funcion MONTH en el querybuilder de doctrine (no se si será necesario que vosotros también lo descarguéis para que funcione, por eso lo aviso)
 
 - He asumido que el fichero siempre separa cada entrada con una nueva linea (aparte de que en cada entrada cada parámetro se separa con tabulador)
 
 - También he asumido que el fichero no es necesario conservarlo en el servidor
 
-- Explicar setup base de datos 
+- BAse de datos (configurado en parmeters.yml):
+	user:root
+	password:null
+	db_name:letsbonus_products
+
+	Está todo mapeado como Entity, así que ejecutando el comando desde el directorio del proyecto:
+
+	php bin/console doctrine:database:create		Creamos BD
+	php bin/console doctrine:generate:entity		Creamos Entity (tabla en BD)
