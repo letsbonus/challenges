@@ -1,0 +1,7 @@
+- He instalado una extension Doctrine mediante composer para poder utilizar la funcion MONTH en el querybuilder de doctrine
+
+- He asumido que el fichero siempre separa cada entrada con una nueva linea (aparte de que en cada entrada cada parámetro se separa con tabulador)
+
+- También he asumido que el fichero no es necesario conservarlo en el servidor
+
+- Explicar setup base de datos 
