@@ -53,6 +53,7 @@ class Producto {
      */
     private $merchant_name;
     
+    //Constructor de la clase donde inicializamos todos los atributos
     public function __construct($title, $description, $price, $init_date, $expiry_date, $merchant_address, $merchant_name) {
         $this->title = $title;
         $this->description = $description;

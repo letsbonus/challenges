@@ -1,17 +1,25 @@
 <?php
 
+/*
+ * Esta clase conforma el modelo de la aplicación, se encarga de persistir en BD
+ * y realizar las consultas necesarias para mostrar la información en 
+ * la vista
+ */
+
 namespace LetsBonusBundle\Model;
 
 use LetsBonusBundle\Entity\Producto;
 
 class FileHandler {
 
+    //Atributo cuyo objetivo es almacenar el contenido del fichero
     private $content;
 
     public function __construct($file) {
         $this->content = file_get_contents($file);
     }
 
+    //Función para extraer los productos del fichero
     function extractProducts() {
         $data = preg_split('/[\n]/', $this->content);
 
@@ -35,6 +43,7 @@ class FileHandler {
         return $products_objects;
     }
 
+    //Función para obtener el total de productos por mes
     function getTotalPerMonth($em) {
         $total_monthly = array();
 
@@ -44,8 +53,6 @@ class FileHandler {
                     . "FROM LetsBonusBundle:Producto p"
                     . " WHERE MONTH(p.init_date) = " . $i);
             $total = $query->setMaxResults(1)->getOneOrNullResult();
-
-
 
             $month;
 
@@ -88,8 +95,6 @@ class FileHandler {
                     break;
             }
 
-//            $total_monthly[$month] = $total[1];
-
             $total_monthly[$i - 1]['total'] = $total[1];
             $total_monthly[$i - 1]['month'] = $month;
         }
@@ -97,33 +102,41 @@ class FileHandler {
         return $total_monthly;
     }
 
+    //Función para obtener el total de productos por cada merchant de l BD
     function getTotalPerMerchant($em) {
         $total_merchant = array();
 
+        //Creamos la query
         $query = $em->createQuery(
                 "SELECT DISTINCT p.merchant_name "
-                ."FROM LetsBonusBundle:Producto p");
+                . "FROM LetsBonusBundle:Producto p");
+        //Capturamos el resultado
         $raw_merchants = $query->getResult();
+        
         $merchants = array();
-        foreach($raw_merchants as $merchant){
+        
+        //Damos formato de salida más amigable al resultado
+        foreach ($raw_merchants as $merchant) {
             array_push($merchants, $merchant['merchant_name']);
         }
-        
-        
-        for ($i = 0; $i < sizeof($merchants); $i++){
+
+        //A continuación, para cada merchant que encontramos realizamos una query a 
+        //BD para sacar el total de productos de ese merchant en concreto
+        for ($i = 0; $i < sizeof($merchants); $i++) {
             $total_merchant[$i]['name'] = $merchants[$i];
-            
+
             $query = $em->createQuery(
-                "SELECT COUNT(p) "
-                ."FROM LetsBonusBundle:Producto p "
+                    "SELECT COUNT(p) "
+                    . "FROM LetsBonusBundle:Producto p "
                     . "WHERE p.merchant_name LIKE '" . $merchants[$i] . "'");
-            
-            
+
+
             $total = $query->setMaxResults(1)->getOneOrNullResult();
             
+            //Capturamos el valor total (count)
             $total_merchant[$i]['total'] = $total[1];
-            
         }
         return $total_merchant;
     }
-} 
+
+}
