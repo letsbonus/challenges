@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% block head %}
+            <title>{% block title %}Result{% endblock %}</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block content %}
+            <h1>Result page!</h1>
+
+            <table style='float: left;'>
+                <tr>
+                    <th>Month</th><th>Products</th>
+                </tr>
+                {% for entry in products_month %}
+                    <tr>
+                        <td>{{entry['month']}}</td><td>{{entry['total']}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <table style='float: left; margin-left: 200px;'>
+                <tr>
+                    <th>Merchant</th><th>Products</th>
+                </tr>
+                {% for entry in products_merchant %}
+                    <tr>
+                        <td>{{entry['name']}}</td><td>{{entry['total']}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        {% endblock %}
+    </body>
+</html>

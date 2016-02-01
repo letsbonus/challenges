@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% block head %}
+            <title>{% block title %}Upload file form{% endblock %}</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block content %}
+            <form enctype="multipart/form-data" method="post" action="/submit">
+                <p>Selecciona el fichero a subir:<br>
+                    <input type="file" name="fichero" accept=".txt" required="true">
+                </p>
+                <input type="submit" value="Enviar">
+            </form>
+        {% endblock %}
+    </body>
+</html>
