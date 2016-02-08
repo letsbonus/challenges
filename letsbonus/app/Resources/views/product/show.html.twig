@@ -1,0 +1,20 @@
+<h1>SHOW PRODUCTS</h1>
+
+
+<h3>Registers by Merchant Name</h3>
+
+<ul>
+    {% for m in gb_merchant %}
+        <li>From {{ m.merchantName|e }} there are {{ m.cont|e }} products.</li>
+    {% endfor %}
+</ul>
+
+<h3>Registers by Month (Initial date reference)</h3>
+
+<ul>
+    {% for m in gb_month %}
+        <li>In {{ m.month|e }} there are {{ m.total|e }} products.</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url('app_product_upload') }}">Return to Upload template</a>
