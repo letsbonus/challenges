@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Java - Eclipse 
+Icon=/usr/share/eclipse-java/icon.xpm
+Exec=/usr/bin/java -Dosgi.requiredJavaVersion=1.7 -XX:MaxPermSize=256m -Xms256m -Xmx1024m -jar /usr/share/eclipse-java//plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -os linux -ws gtk -arch x86_64 -showsplash /usr/share/eclipse-java//plugins/org.eclipse.platform_4.5.2.v20160212-1500/splash.bmp -launcher /usr/share/eclipse-java/eclipse -name Eclipse --launcher.library /usr/share/eclipse-java//plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.300.v20150602-1417/eclipse_1612.so -startup /usr/share/eclipse-java//plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar --launcher.appendVmargs -exitdata 418020 -product org.eclipse.epp.package.java.product -vm /usr/bin/java -vmargs -Dosgi.requiredJavaVersion=1.7 -XX:MaxPermSize=256m -Xms256m -Xmx1024m -jar /usr/share/eclipse-java//plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar
+StartupNotify=false
+StartupWMClass=Eclipse
+OnlyShowIn=Unity;
+X-UnityGenerated=true

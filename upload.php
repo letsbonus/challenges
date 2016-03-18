@@ -1,5 +1,12 @@
 <?php  
 
+/**
+ * Este script sube el archivo al servidor para parsearlo e insertar su contenido
+ * en la BD.
+ * 
+ * El usuario de
+ */
+
 //Esta carpeta DEBE tener permisos de escritura
 $target = "upload/";
 
@@ -10,7 +17,7 @@ $password = "admin";
 $db_name = "letsbonus";
 
 $target = $target . basename( $_FILES['uploaded']['name']) ;  
-$ok=1;  
+session_start();  
 
 if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))  { 
 		
@@ -21,7 +28,6 @@ if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))  {
 		header('Location: main.php');
 		exit;
 	}
-	
 	
 	$fichero = file_get_contents($target, true);
 	$array = explode("\t",$fichero);
@@ -41,6 +47,15 @@ if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))  {
 		
 		$sql = "INSERT INTO `letsbonus.products`(`title`, `description`, `price`, `ini_date`, `exp_date`, `status`) VALUES ('$title', $description, $price, '$ini_date', '$exp_date', '$status')";
 		$result = mysql_query($sql);
+		
+		if (mysql_error()) {
+			$error = mysql_error();
+			$_SESSION['registros'] = $registros;
+			$_SESSION['error'] = $error;
+			header('Location: final.php');
+			die();
+		}
+		
 		$i = $i +6;
 		
 		if ($result) {
@@ -49,11 +64,10 @@ if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))  {
 	}
 	
 	mysqli_close($enlace);
-	
-	echo "Se han insertado " + $registros + " registros en la BD";
+	$_SESSION['registros'] = $registros;
+	header('Location: final.php');
 	
 }  else { 
-	
 	header('Location: main.php');
 	exit;
 	
