@@ -1,0 +1,72 @@
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LetsBonus\Challenge\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\Github\challenges\PHPChallenge_alenunia\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\Github\challenges\PHPChallenge_alenunia\public\tmp\example_input2.tab
+------------------------------------------
+Valid File Type, I will to process it!
+INIT PARSER
+D:\Programacion\LBRepo\challenges\PHPChallenge_alenunia\public\tmp\example_input2.tab
+------------------------------------------

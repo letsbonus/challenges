@@ -1,0 +1,36 @@
+<div class="txt_class1">Por favor, seleccione un archivo:</div>
+<div>
+   <?php 
+      echo $this->formFile;
+      if(isset($this->valid)) {
+         if($this->valid) {
+            echo "<div class='txt_green'>El último archivo fue cargado con éxito</div>";
+         }
+         else {
+            echo "<div class='txt_red'>El último archivo seleccionado no corresponde con el tipo de archivo [.TAB] o contiene un error</div>";
+         }
+      }
+   ?>
+</div>
+<div class="txt_class2">Información de los Artículos Cargados</div>
+<div class="div_left">
+   <div class="txt_class3">Artículos por Mes</div>
+   <?php
+      $last_year = 0;
+      foreach($this->items_month as $row) {
+         if($row['year'] != $last_year) {
+            echo "<div class='txt_class4'>".$row['year']."</div>";
+            $last_year = $row['year'];
+         }
+         echo "<div class='txt_class5'><div class='div_month'>".$row['month']."</div><div class='div_quantity'>".$row['quantity']."</div></div>";
+      }
+   ?>
+</div>
+<div class="div_left">
+   <div class="txt_class3">Artículos por Vendedor</div>
+   <?php
+      foreach($this->items_merchant as $row) {
+         echo "<div class='txt_class5'><div class='div_merchant'>".$row['merchant_name']."</div><div class='div_quantity'>".$row['quantity']."</div></div>";
+      }
+   ?>
+</div>
