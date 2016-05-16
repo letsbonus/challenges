@@ -28,7 +28,7 @@ class Product
      */
     /**
      * @ORM\ManyToOne(targetEntity="LetsBonusTestBundle\Entity\Merchant")
-     * @ORM\JoinColumn(name="merchant_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="merchant_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $merchant;
 
@@ -70,7 +70,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=20)
      */
     private $status;
 
