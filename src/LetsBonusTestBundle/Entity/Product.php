@@ -15,11 +15,22 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="merchant_id", type="integer", options={"unsigned"=true})
+     */
+    /**
+     * @ORM\ManyToOne(targetEntity="LetsBonusTestBundle\Entity\Merchant")
+     * @ORM\JoinColumn(name="merchant_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $merchant;
 
     /**
      * @var string
@@ -86,6 +97,30 @@ class Product
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set merchant
+     *
+     * @param \LetsBonusTestBundle\Entity\Merchant $merchant
+     *
+     * @return Product
+     */
+    public function setMerchant(\LetsBonusTestBundle\Entity\Merchant $merchant = null)
+    {
+        $this->merchant = $merchant;
+
+        return $this;
+    }
+
+    /**
+     * Get merchant
+     *
+     * @return \LetsBonusTestBundle\Entity\Merchant
+     */
+    public function getMerchant()
+    {
+        return $this->merchant;
     }
 
     /**
