@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Merchant
  *
- * @ORM\Table(name="merchant")
+ * @ORM\Table(name="merchants", indexes={@ORM\Index(name="merchant_name", columns={"name"})})
  * @ORM\Entity(repositoryClass="LetsBonusTestBundle\Repository\MerchantRepository")
  */
 class Merchant

@@ -2,6 +2,8 @@
 
 namespace LetsBonusTestBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMapping;
+
 /**
  * ProductRepository
  *
@@ -10,4 +12,28 @@ namespace LetsBonusTestBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countProductsByMerchant()
+    {
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('merchant', 'merchant');
+        $rsm->addScalarResult('count', 'count');
+
+        // Es fa d'aquesta manera perque amb symfony per treure aquestes dades requereix de dues query, per tant es prou més lent
+        $query = $this->_em->createNativeQuery('SELECT m.name merchant, COUNT(*) count FROM products p INNER JOIN merchants m ON m.id=p.merchant_id GROUP BY p.merchant_id', $rsm);
+
+        return $query->getResult();
+    }
+
+    public function countProductsByMonth()
+    {
+        $rsm = new ResultSetMapping;
+        $rsm->addScalarResult('month', 'month');
+        $rsm->addScalarResult('count', 'count');
+
+        // Es fa d'aquesta manera perque amb symfony per treure aquestes dades requereix de dues query, per tant es prou més lent
+        // No es te en compte l'any, no es demana ...
+        $query = $this->_em->createNativeQuery('SELECT MONTHNAME(p.created_at) month, COUNT(*) count FROM products p GROUP BY MONTH(p.created_at)', $rsm);
+
+        return $query->getResult();
+    }
 }
