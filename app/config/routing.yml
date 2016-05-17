@@ -2,7 +2,3 @@ lets_bonus_test:
     resource: "@LetsBonusTestBundle/Controller/"
     type:     annotation
     prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

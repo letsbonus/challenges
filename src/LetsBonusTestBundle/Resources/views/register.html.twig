@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/css/login.css">
+{% endblock %}
+
+{% block body %}
+    <form name="fos_user_registration_form" method="post" action="/register" class="form-signin">
+        <h2 class="form-signin-heading">Sign up</h2>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}
+
+        <label for="fos_user_registration_form_username" class="sr-only">form.username</label>
+        <input type="text" class="form-control first" placeholder="Username" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" autofocus="" maxlength="255" pattern=".{2,}">
+
+        <label for="fos_user_registration_form_email" class="sr-only">form.email</label>
+        <input type="email" class="form-control" placeholder="Email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required">
+
+        <label for="fos_user_registration_form_plainPassword_first" class="sr-only">form.password</label>
+        <input type="password" class="form-control" placeholder="Password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required">
+
+        <label for="fos_user_registration_form_plainPassword_second" class="sr-only">form.password_confirmation</label>
+        <input type="password" class="form-control last" placeholder="Repeat Password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required">
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="_submit" name="_submit">Sign up</button>
+
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-success btn-block">You have an account? Login!</a>
+    </form>
+{% endblock %}
