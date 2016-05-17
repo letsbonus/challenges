@@ -9,7 +9,7 @@
 {% block body %}
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form class="" action="{{ path('lb_upload') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ path('lb_upload') }}" method="post" enctype="multipart/form-data">
                 {% for flashVar in app.session.flashbag.get('upload_result') %}
                     <div class="alert alert-info">{{ flashVar }}</div>
                 {% endfor %}
@@ -49,32 +49,35 @@
     <hr>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form role="form">
+            <form role="form" method="POST" action="{{ path('lb_home') }}">
+                {% for flashVar in app.session.flashbag.get('form_result') %}
+                    <div class="alert alert-info">{{ flashVar }}</div>
+                {% endfor %}
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input id="title" type="text" class="form-control">
+                    <input name="product[title]" id="title" type="text" class="form-control">
                 </div>
 
                 <div class="form-group">
                     <label for="desc">Description:</label>
-                    <textarea id="desc" class="form-control cleditor" rows="5"></textarea>
+                    <textarea name="product[description]" id="desc" class="form-control cleditor" rows="5"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="desc">Price:</label>
-                    <input type="number" class="form-control" id="desc" step="0.01">
+                    <input name="product[price]" type="number" class="form-control" id="desc" step="0.01">
                 </div>
                 <div class="form-group">
                     <label for="init_date">Date start:</label>
-                    <input type="date" class="form-control" id="init_date">
+                    <input name="product[init_date]" type="datetime-local" class="form-control" id="init_date">
                 </div>
                 <div class="form-group">
                     <label for="end_date">Date end:</label>
-                    <input type="date" class="form-control" id="end_date">
+                    <input name="product[expiry_date]" type="datetime-local" class="form-control" id="end_date">
                 </div>
                 <div class="form-group">
                     <label for="status">Status:</label>
-                    <select class="form-control" id="status">
+                    <select name="product[status]" class="form-control" id="status">
                         <option value="new">new</option>
                         <option value="user">used</option>
                         <option value="broken">broken</option>
@@ -82,7 +85,7 @@
                 </div>
                 <div class="form-group">
                     <label for="merchant">Merchant:</label>
-                    <select class="form-control" id="merchantsOpt">
+                    <select name="product[merchant]" class="form-control" id="merchantsOpt">
                         <option value="new">Create new</option>
                         {% for merchant in merchants %}
                             <option value="{{merchant.id}}">{{merchant.name}}</option>
@@ -92,11 +95,11 @@
                 <div id="merchant_create_inputs">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input id="name" type="text" class="form-control">
+                        <input name="merchant[name]" id="name" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="addr">Address:</label>
-                        <input id="addr" type="text" class="form-control">
+                        <input name="merchant[address]" id="addr" type="text" class="form-control">
                     </div>
                 </div>
 

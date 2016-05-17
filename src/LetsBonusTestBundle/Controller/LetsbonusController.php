@@ -16,6 +16,53 @@ class LetsbonusController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+        if ($request->getMethod() == 'POST') {
+            // TODO Control de errores
+            $data = $request->request->all();
+            $dateTime = new \DateTime();
+            $dateTime = $dateTime->setTimezone(new \DateTimeZone("UTC"));
+
+            $product = new Product();
+            if ($data['product']['merchant'] == 'new') {
+                $merchant = new Merchant();
+                $merchant->setName($data['merchant']['name']);
+                $merchant->setAddress($data['merchant']['address']);
+                $merchant->setUpdatedAt($dateTime);
+                $merchant->setCreatedAt($dateTime);
+
+                // Insert User to DB
+                $em->persist($merchant);
+                $em->flush();
+            } else {
+                $merchant = $em->getRepository('LetsBonusTestBundle:Merchant')->find($data['product']['merchant']);
+                if (!$merchant) {
+                    // TODO erró!
+                }
+            }
+            $initDate = new \DateTime($data['product']['init_date']);
+            $initDate = $initDate->setTimezone(new \DateTimeZone("UTC"));
+            $expiryDate = new \DateTime($data['product']['expiry_date']);
+            $expiryDate = $expiryDate->setTimezone(new \DateTimeZone("UTC"));
+
+            $product->setMerchant($merchant);
+            $product->setTitle($data['product']['title']);
+            $product->setDescription($data['product']['description']);
+            $product->setPrice($data['product']['price']);
+            $product->setInitDate($initDate);
+            $product->setExpiryDate($expiryDate);
+            $product->setStatus($data['product']['status']);
+            $product->setUpdatedAt($dateTime);
+            $product->setCreatedAt($dateTime);
+
+            // Insert User to DB
+            $em->persist($product);
+            $em->flush();
+
+            // TODO mostrar posible errores
+            $this->get('session')->getFlashBag()->add('form_result', 'Form send OK!');
+        }
+
         $merchants = $em->getRepository('LetsBonusTestBundle:Merchant')->findAll();
         $prodByMerchants = $em->getRepository('LetsBonusTestBundle:Product')->countProductsByMerchant();
         $prodByMonths = $em->getRepository('LetsBonusTestBundle:Product')->countProductsByMonth();
@@ -49,28 +96,35 @@ class LetsbonusController extends Controller
 
             if (!$first) {
                 $merchant = $em->getRepository('LetsBonusTestBundle:Merchant')->findOneByName($line[6]);
+                $dateTime = new \DateTime();
+                $dateTime = $dateTime->setTimezone(new \DateTimeZone("UTC"));
 
                 if (!$merchant) {
                     $merchant = new Merchant();
                     $merchant->setName($line[6]);
                     $merchant->setAddress($line[5]);
-                    $merchant->setUpdatedAt(new \DateTime());
-                    $merchant->setCreatedAt(new \DateTime());
+                    $merchant->setUpdatedAt($dateTime);
+                    $merchant->setCreatedAt($dateTime);
                     // Insert User to DB
                     $em->persist($merchant);
                     $em->flush();
                 }
+
+                $initDate = new \DateTime($line[3]);
+                $initDate = $initDate->setTimezone(new \DateTimeZone("UTC"));
+                $expiryDate = new \DateTime($line[4]);
+                $expiryDate = $expiryDate->setTimezone(new \DateTimeZone("UTC"));
 
                 $product = new Product();
                 $product->setMerchant($merchant);
                 $product->setTitle($line[0]);
                 $product->setDescription($line[1]);
                 $product->setPrice($line[2]);
-                $product->setInitDate(new \DateTime($line[3]));
-                $product->setExpiryDate(new \DateTime($line[4]));
+                $product->setInitDate($initDate);
+                $product->setExpiryDate($expiryDate);
                 $product->setStatus("new");
-                $product->setUpdatedAt(new \DateTime());
-                $product->setCreatedAt(new \DateTime());
+                $product->setUpdatedAt($dateTime);
+                $product->setCreatedAt($dateTime);
                 // Insert User to DB
                 $em->persist($product);
                 $em->flush();
