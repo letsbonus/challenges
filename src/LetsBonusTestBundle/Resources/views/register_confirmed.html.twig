@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/css/login.css">
+{% endblock %}
+
+{% block body %}
+    <div class="form-signin">
+        <h2 class="form-signin-heading">Registred!!!</h2>
+
+        <p>
+            You can use this app now
+        </p>
+
+        <a href="{{ path('lb_home') }}" class="btn btn-lg btn-success btn-block">Start yout experience!</a>
+    </div>
+{% endblock %}

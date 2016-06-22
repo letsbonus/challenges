@@ -1,0 +1,117 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/css/jquery.cleditor.css">
+    <link rel="stylesheet" href="/css/fileinput.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="{{ path('lb_upload') }}" method="post" enctype="multipart/form-data">
+                {% for flashVar in app.session.flashbag.get('upload_result') %}
+                    <div class="alert alert-info">{{ flashVar }}</div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="file" class="control-label">Select File</label>
+                    <input id="file" type="file" class="file" name="file" multiple="false" data-show-upload="false">
+                </div>
+
+                <button type="submit" class="btn btn-lg btn-success btn-block">Upload & Process File</button>
+            </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Product by month</h4>
+                    <ul class="list-group">
+                        {% for prodByMonth in prodByMonths %}
+                            <li class="list-group-item">
+                                <span class="label label-default label-pill pull-right">{{ prodByMonth.count }}</span>
+                                {{ prodByMonth.month }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Product by merchant</h4>
+                    <ul class="list-group">
+                        {% for prodByMerchant in prodByMerchants %}
+                            <li class="list-group-item">
+                                <span class="label label-default label-pill pull-right">{{ prodByMerchant.count }}</span>
+                                {{ prodByMerchant.merchant }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form role="form" method="POST" action="{{ path('lb_home') }}">
+                {% for flashVar in app.session.flashbag.get('form_result') %}
+                    <div class="alert alert-info">{{ flashVar }}</div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input name="product[title]" id="title" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <textarea name="product[description]" id="desc" class="form-control cleditor" rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Price:</label>
+                    <input name="product[price]" type="number" class="form-control" id="desc" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="init_date">Date start:</label>
+                    <input name="product[init_date]" type="datetime-local" class="form-control" id="init_date">
+                </div>
+                <div class="form-group">
+                    <label for="end_date">Date end:</label>
+                    <input name="product[expiry_date]" type="datetime-local" class="form-control" id="end_date">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select name="product[status]" class="form-control" id="status">
+                        <option value="new">new</option>
+                        <option value="user">used</option>
+                        <option value="broken">broken</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="merchant">Merchant:</label>
+                    <select name="product[merchant]" class="form-control" id="merchantsOpt">
+                        <option value="new">Create new</option>
+                        {% for merchant in merchants %}
+                            <option value="{{merchant.id}}">{{merchant.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="merchant_create_inputs">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input name="merchant[name]" id="name" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="addr">Address:</label>
+                        <input name="merchant[address]" id="addr" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success pull-right">Submit</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jquery.cleditor.min.js"></script>
+    <script src="/js/fileinput.min.js"></script>
+    <script src="/js/app.js"></script>
+{% endblock %}
