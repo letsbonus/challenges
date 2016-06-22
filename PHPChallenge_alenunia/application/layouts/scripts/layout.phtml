@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <?php
+      echo $this->headTitle();
+      echo $this->headMeta();
+      echo $this->headLink();
+   ?>
+</head>
+
+<body>
+   <header>
+      <div class="main_title">Bienvenido al Sistema de Carga de Datos</div>
+   </header>
+   <main>
+      <div id="div_content">
+         <?php echo $this->layout()->content; ?>
+      </div>
+   </main>
+   <footer>
+   </footer>
+</body>
+</html>

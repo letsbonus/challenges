@@ -1,0 +1,57 @@
+.main_title {
+   text-align: center;
+   font-size: 2em;
+   font-weight: bold;
+   line-height: 2.5em;
+}
+
+.txt_class1 {
+   font-size: 1.2em;
+   font-weight: bold;
+   line-height: 2em;
+   color: #0398CA;
+   margin-left: 0.5em;
+}
+
+.txt_class2 {
+   font-size: 1.2em;
+   font-weight: bold;
+   line-height: 2em;
+   color: #0398CA;
+   margin-left: 0.5em;
+   margin-top: 1em;
+   border-top: #DDD solid 1px;
+}
+
+.txt_class3 {
+   font-size: 1.1em;
+   font-weight: bold;
+   line-height: 2em;
+   color: #000;
+   margin-left: 0.5em;
+}
+
+.txt_class4 {
+   font-size: 1em;
+   color: #000;
+   margin-left: 1em;
+   clear: both;
+}
+
+.txt_class5 {
+   font-size: 1em;
+   color: #000;
+   margin-left: 2em;
+}
+
+.txt_green {
+   font-size: 1em;
+   line-height: 2em;
+   color: #0fd33b;
+}
+
+.txt_red {
+   font-size: 1em;
+   line-height: 2em;
+   color: #ff051c;
+}
