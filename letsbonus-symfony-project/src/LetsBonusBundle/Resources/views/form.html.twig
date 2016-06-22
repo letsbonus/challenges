@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% block head %}
+            <title>{% block title %}Upload file form{% endblock %}</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+            <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block content %}
+            <div class="container">
+                <h2>Bienvenido a la nueva aplicacion de letsbonus</h2>
+                <form class="form" enctype="multipart/form-data" method="post" action="/submit">
+                    <div class="form-group">
+                        <label for="file">Selecciona un fichero .txt:</label>
+                        <input type="file" name="fichero" accept=".txt" required="true">
+                    </div>
+                    <button type='submit' class='btn-primary'>Enviar</button>
+                </form>
+            </div>
+        {% endblock %}
+    </body>
+</html>

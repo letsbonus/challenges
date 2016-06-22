@@ -1,0 +1,8 @@
+letsbonus_app_index:
+    path:     /
+    defaults: { _controller: LetsBonusBundle:LetsBonus:index }
+    
+letsbonus_app_submit:
+    path: /submit
+    defaults: { _controller: LetsBonusBundle:LetsBonus:submit }
+        

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% block head %}
+            <title>{% block title %}Result{% endblock %}</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+            <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block content %}
+            <div class="container">
+                <h1>Result page!</h1>
+
+                <table class="table table-bordered" style='float: left; width: 40%;'>
+                    <tr>
+                        <th>Month</th><th>Products</th>
+                    </tr>
+                    {% for entry in products_month %}
+                        <tr>
+                            <td>{{entry['month']}}</td><td>{{entry['total']}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <table class="table table-bordered" style='float: left; margin-left: 5%; width: 40%;'>
+                    <tr>
+                        <th>Merchant</th><th>Products</th>
+                    </tr>
+                    {% for entry in products_merchant %}
+                        <tr>
+                            <td>{{entry['name']}}</td><td>{{entry['total']}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        {% endblock %}
+    </body>
+</html>
